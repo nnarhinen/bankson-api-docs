@@ -5,6 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
+  - <a href='http://www.bankson.fi'>Bankson home page</a>
   - <a href='https://app.bankson.fi'>Sign Up for Bankson</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
@@ -297,3 +298,93 @@ Parameter | Description
 customer_id | The id number given by your bank
 transfer_key1 | Transfer key (part1) or PIN code
 transfer_key2 | Trasnfer key (part2), if available
+
+# Bank accounts
+
+## List bank accounts
+
+```shell
+curl "https://api.bankson.fi/bankaccounts"
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+> JSON response
+
+```json
+[{
+  "id": 1,
+  "certificate_id": 1,
+  "environment_id": 1,
+  "iban": "FI4819503000000010",
+  "bic": "NDEAFIHH",
+  "contract_id": "11111111",
+  "created_at": "2016-05-23T21:08:16.503Z",
+  "updated_at":"2016-05-23T21:08:16.503Z",
+  "balance": null,
+  "balance_date": null,
+  "test":true
+}]
+```
+
+List all bank accounts known to Bankson.
+
+### HTTP request
+
+`GET https://api.bankson.fi/bankaccounts`
+
+## Add bank account
+
+```shell
+curl "https://api.bankson.fi/bankaccounts" -X POST
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+  -H "Content-Type: application/json"
+  -d '{ "bic": "NDEAFIHH", "iban": "FI4819503000000010", "certificate_id": 1, "contract_id": "1234" }'
+```
+
+> JSON response
+
+```json
+{
+  "id": 5,
+  "certificate_id": 1,
+  "environment_id": 1,
+  "iban": "FI4819503000000010",
+  "bic": "NDEAFIHH",
+  "contract_id": "11111111",
+  "created_at": "2016-05-23T21:08:16.503Z",
+  "updated_at":"2016-05-23T21:08:16.503Z",
+  "balance": null,
+  "balance_date": null,
+  "test":true
+}
+```
+
+Creates a new bank account and associates it with a certificate.
+
+### HTTP Request
+
+`POST https://api.bankson.fi/bankaccounts`
+
+### JSON parameters
+
+Parameter | Description
+--------- | -----------
+bic       | BIC code of bank
+iban | IBAN of the account to be added
+certificate_id | id of the certificate associated by
+contract_id | The identification given by the bank for services like CAMT
+
+## Delete bank account
+
+```shell
+curl "https://api.bankson.fi/bankaccounts/5" -X DELETE
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+> Empty response, HTTP Status code 204
+
+Deletes a bank account.
+
+### HTTP Request
+
+`DELETE https://api.bankson.fi/bankaccounts/:id`
