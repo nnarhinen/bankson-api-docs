@@ -388,3 +388,753 @@ Deletes a bank account.
 ### HTTP Request
 
 `DELETE https://api.bankson.fi/bankaccounts/:id`
+
+# Bank account statements
+
+## List statements
+
+```shell
+curl "https://api.bankson.fi/bankaccountstatements"
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+> JSON response
+
+```json
+[
+  {
+    "id":1,
+    "environment_id":1,
+    "bank_account_id":1,
+    "from":"2006-03-02T22:00:00.000Z",
+    "to":"2006-03-02T22:00:00.000Z",
+    "legal_sequence_number":"043",
+    "entries":[
+      {
+        "entry_reference":1,
+        "archive_id":"060303258877C24002",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":2205.6,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Hyvityslasku",
+        "amount":-3205.6,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "HYVITYSLASKU 2425"
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Lasku",
+        "amount":3200,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"800056124147",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Lasku",
+        "amount":2211.2,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"800056124150",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":2,
+        "archive_id":"060303258877A26324",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":3695,
+        "receiver":"LUMILINNA KY",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":3,
+        "archive_id":"060303258877A22357",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":2229.3,
+        "receiver":"PELTOLA PEKKA OY",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "LASKUT 3278/3251/4836"
+        ]
+      },
+      {
+        "entry_reference":4,
+        "archive_id":"0603032584SM020048",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-02",
+        "payment_date":"2006-03-03",
+        "booking_information":"780Zero Balancing",
+        "amount":10364.87,
+        "receiver":"ABC-KONSERNI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "CMZ/0036540000 /5400"
+        ]
+      },
+      {
+        "entry_reference":5,
+        "archive_id":"0603032588WWNG0370",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":256.75,
+        "receiver":"PELTOLA LIISA",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "LASKU 3265/HYVITYSLASKU 777"
+        ]
+      },
+      {
+        "entry_reference":6,
+        "archive_id":"0603032584SM010117",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-03",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Nordea maksu",
+        "amount":1130.91,
+        "receiver":"US IRON AND STEEL",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "2584SMM0849971 /RFB/WT0000626289 000049302611118 MAKSAJAN ILMOITTAMA SAAJAN NIMI: NORTH CASTLE'S IRONHOUSE TORPANKATU 1111 PL 999 99999 POHJANLINNA FINLAND",
+          "LÄHETTÄJÄN OSOITE: 1239 EAST CIRCLESTREET PO BOX55/5 8877"
+        ]
+      },
+      {
+        "entry_reference":7,
+        "archive_id":"060303258873A20009",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"704Suoraveloituspalvelu",
+        "amount":2120.68,
+        "receiver":"",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":8,
+        "archive_id":"060303258874A35319",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"703Maksupäätepalvelu",
+        "amount":5219,
+        "receiver":"POHJANLINNAN RAUTATALO",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "OSTOT    111 KPL            5219,00 OIK.       0 KPL               0,00",
+          "TILITYSERÄ 0120070"
+        ]
+      },
+      {
+        "entry_reference":9,
+        "archive_id":"0603032584LV143623",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-03",
+        "payment_date":"2006-03-03",
+        "booking_information":"720Tilisiirto",
+        "amount":-81.1,
+        "receiver":"ABC-KONSERNI",
+        "receiver_account":"19503000001414",
+        "reference_number":"",
+        "additional_information":[
+          "00000324510099418709",
+          "001311     REC:5",
+          "MAKSAJAN ILMOITTAMA SAAJAN NIMI: C/O ABCDEF GROUP OY"
+        ]
+      }
+    ],
+    "balances":[
+      {
+        "booking_date":"2006-03-02",
+        "amount":30838.49
+      },
+      {
+        "bookingDate":"2006-03-03",
+        "amount":4409.27,
+        "availableAmount":0
+      }
+    ],
+    "created_at":"2016-05-24T22:45:48.672Z",
+    "updated_at":"2016-05-24T22:45:48.672Z",
+    "servicer_name":"Nordea Pankki Suomi Oyj Y-tunn 1680235-8",
+    "servicer_bic":"NDEAFIHH",
+    "account_owner_name":"POHJANLINNAN RAUTATALO",
+    "currency":"EUR",
+    "test":true,
+    "bank_account":{
+      "id":1,
+      "certificate_id":1,
+      "environment_id":1,
+      "iban":"FI4819503000000010",
+      "bic":"NDEAFIHH",
+      "contract_id":"11111111",
+      "created_at":"2016-05-23T21:08:16.503Z",
+      "updated_at":"2016-05-23T21:08:16.503Z",
+      "balance":null,
+      "balance_date":null,
+      "test":true
+    }
+  }
+]
+```
+
+Fetches bank account statements from Bankson
+
+### HTTP request
+
+`GET https://api.bankson.fi/bankaccountstatements`
+
+## Fetch bank account statements from bank
+
+```shell
+curl "https://api.bankson.fi/bankaccountstatements" -X POST
+  -H "Authorization: Beare 4fc79757419b539937b94f1bd0f6e315765bbde4"
+  -H "Content-Type: application/json"
+  -d '{ "certificate_id": 1 }'
+```
+
+> JSON response
+
+```json
+[
+  {
+    "id":1,
+    "environment_id":1,
+    "bank_account_id":1,
+    "from":"2006-03-02T22:00:00.000Z",
+    "to":"2006-03-02T22:00:00.000Z",
+    "legal_sequence_number":"043",
+    "entries":[
+      {
+        "entry_reference":1,
+        "archive_id":"060303258877C24002",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":2205.6,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Hyvityslasku",
+        "amount":-3205.6,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "HYVITYSLASKU 2425"
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Lasku",
+        "amount":3200,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"800056124147",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Lasku",
+        "amount":2211.2,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"800056124150",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":2,
+        "archive_id":"060303258877A26324",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":3695,
+        "receiver":"LUMILINNA KY",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":3,
+        "archive_id":"060303258877A22357",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":2229.3,
+        "receiver":"PELTOLA PEKKA OY",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "LASKUT 3278/3251/4836"
+        ]
+      },
+      {
+        "entry_reference":4,
+        "archive_id":"0603032584SM020048",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-02",
+        "payment_date":"2006-03-03",
+        "booking_information":"780Zero Balancing",
+        "amount":10364.87,
+        "receiver":"ABC-KONSERNI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "CMZ/0036540000 /5400"
+        ]
+      },
+      {
+        "entry_reference":5,
+        "archive_id":"0603032588WWNG0370",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":256.75,
+        "receiver":"PELTOLA LIISA",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "LASKU 3265/HYVITYSLASKU 777"
+        ]
+      },
+      {
+        "entry_reference":6,
+        "archive_id":"0603032584SM010117",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-03",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Nordea maksu",
+        "amount":1130.91,
+        "receiver":"US IRON AND STEEL",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "2584SMM0849971 /RFB/WT0000626289 000049302611118 MAKSAJAN ILMOITTAMA SAAJAN NIMI: NORTH CASTLE'S IRONHOUSE TORPANKATU 1111 PL 999 99999 POHJANLINNA FINLAND",
+          "LÄHETTÄJÄN OSOITE: 1239 EAST CIRCLESTREET PO BOX55/5 8877"
+        ]
+      },
+      {
+        "entry_reference":7,
+        "archive_id":"060303258873A20009",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"704Suoraveloituspalvelu",
+        "amount":2120.68,
+        "receiver":"",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":8,
+        "archive_id":"060303258874A35319",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"703Maksupäätepalvelu",
+        "amount":5219,
+        "receiver":"POHJANLINNAN RAUTATALO",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "OSTOT    111 KPL            5219,00 OIK.       0 KPL               0,00",
+          "TILITYSERÄ 0120070"
+        ]
+      },
+      {
+        "entry_reference":9,
+        "archive_id":"0603032584LV143623",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-03",
+        "payment_date":"2006-03-03",
+        "booking_information":"720Tilisiirto",
+        "amount":-81.1,
+        "receiver":"ABC-KONSERNI",
+        "receiver_account":"19503000001414",
+        "reference_number":"",
+        "additional_information":[
+          "00000324510099418709",
+          "001311     REC:5",
+          "MAKSAJAN ILMOITTAMA SAAJAN NIMI: C/O ABCDEF GROUP OY"
+        ]
+      }
+    ],
+    "balances":[
+      {
+        "booking_date":"2006-03-02",
+        "amount":30838.49
+      },
+      {
+        "bookingDate":"2006-03-03",
+        "amount":4409.27,
+        "availableAmount":0
+      }
+    ],
+    "created_at":"2016-05-24T22:45:48.672Z",
+    "updated_at":"2016-05-24T22:45:48.672Z",
+    "servicer_name":"Nordea Pankki Suomi Oyj Y-tunn 1680235-8",
+    "servicer_bic":"NDEAFIHH",
+    "account_owner_name":"POHJANLINNAN RAUTATALO",
+    "currency":"EUR",
+    "test":true,
+    "bank_account":{
+      "id":1,
+      "certificate_id":1,
+      "environment_id":1,
+      "iban":"FI4819503000000010",
+      "bic":"NDEAFIHH",
+      "contract_id":"11111111",
+      "created_at":"2016-05-23T21:08:16.503Z",
+      "updated_at":"2016-05-23T21:08:16.503Z",
+      "balance":null,
+      "balance_date":null,
+      "test":true
+    }
+  }
+]
+```
+
+Updates bank account statements from the bank
+
+### HTTP request
+
+`POST https://api.bankson.fi/bankaccountstatments`
+
+### JSON params
+
+Parameter | Description
+--------- | -----------
+certificate_id | The certificate to use for bank acount statement refresh
+
+## Show single statement
+
+```shell
+curl "https://api.bankson.fi/bankaccountstatements/12"
+  -H "Accept: application/json"
+```
+
+> JSON response
+
+```json
+{
+    "id":1,
+    "environment_id":1,
+    "bank_account_id":1,
+    "from":"2006-03-02T22:00:00.000Z",
+    "to":"2006-03-02T22:00:00.000Z",
+    "legal_sequence_number":"043",
+    "entries":[
+      {
+        "entry_reference":1,
+        "archive_id":"060303258877C24002",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":2205.6,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Hyvityslasku",
+        "amount":-3205.6,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "HYVITYSLASKU 2425"
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Lasku",
+        "amount":3200,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"800056124147",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":1,
+        "archive_id":"",
+        "booking_date":"2006-03-03",
+        "value_date":"0000-00-00",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Lasku",
+        "amount":2211.2,
+        "receiver":"RUUVI JA MUTTERI",
+        "receiver_account":"",
+        "reference_number":"800056124150",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":2,
+        "archive_id":"060303258877A26324",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":3695,
+        "receiver":"LUMILINNA KY",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":3,
+        "archive_id":"060303258877A22357",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":2229.3,
+        "receiver":"PELTOLA PEKKA OY",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "LASKUT 3278/3251/4836"
+        ]
+      },
+      {
+        "entry_reference":4,
+        "archive_id":"0603032584SM020048",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-02",
+        "payment_date":"2006-03-03",
+        "booking_information":"780Zero Balancing",
+        "amount":10364.87,
+        "receiver":"ABC-KONSERNI",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "CMZ/0036540000 /5400"
+        ]
+      },
+      {
+        "entry_reference":5,
+        "archive_id":"0603032588WWNG0370",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Pano",
+        "amount":256.75,
+        "receiver":"PELTOLA LIISA",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "LASKU 3265/HYVITYSLASKU 777"
+        ]
+      },
+      {
+        "entry_reference":6,
+        "archive_id":"0603032584SM010117",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-03",
+        "payment_date":"2006-03-03",
+        "booking_information":"710Nordea maksu",
+        "amount":1130.91,
+        "receiver":"US IRON AND STEEL",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "2584SMM0849971 /RFB/WT0000626289 000049302611118 MAKSAJAN ILMOITTAMA SAAJAN NIMI: NORTH CASTLE'S IRONHOUSE TORPANKATU 1111 PL 999 99999 POHJANLINNA FINLAND",
+          "LÄHETTÄJÄN OSOITE: 1239 EAST CIRCLESTREET PO BOX55/5 8877"
+        ]
+      },
+      {
+        "entry_reference":7,
+        "archive_id":"060303258873A20009",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"704Suoraveloituspalvelu",
+        "amount":2120.68,
+        "receiver":"",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+
+        ]
+      },
+      {
+        "entry_reference":8,
+        "archive_id":"060303258874A35319",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-06",
+        "payment_date":"2006-03-03",
+        "booking_information":"703Maksupäätepalvelu",
+        "amount":5219,
+        "receiver":"POHJANLINNAN RAUTATALO",
+        "receiver_account":"",
+        "reference_number":"",
+        "additional_information":[
+          "OSTOT    111 KPL            5219,00 OIK.       0 KPL               0,00",
+          "TILITYSERÄ 0120070"
+        ]
+      },
+      {
+        "entry_reference":9,
+        "archive_id":"0603032584LV143623",
+        "booking_date":"2006-03-03",
+        "value_date":"2006-03-03",
+        "payment_date":"2006-03-03",
+        "booking_information":"720Tilisiirto",
+        "amount":-81.1,
+        "receiver":"ABC-KONSERNI",
+        "receiver_account":"19503000001414",
+        "reference_number":"",
+        "additional_information":[
+          "00000324510099418709",
+          "001311     REC:5",
+          "MAKSAJAN ILMOITTAMA SAAJAN NIMI: C/O ABCDEF GROUP OY"
+        ]
+      }
+    ],
+    "balances":[
+      {
+        "booking_date":"2006-03-02",
+        "amount":30838.49
+      },
+      {
+        "bookingDate":"2006-03-03",
+        "amount":4409.27,
+        "availableAmount":0
+      }
+    ],
+    "created_at":"2016-05-24T22:45:48.672Z",
+    "updated_at":"2016-05-24T22:45:48.672Z",
+    "servicer_name":"Nordea Pankki Suomi Oyj Y-tunn 1680235-8",
+    "servicer_bic":"NDEAFIHH",
+    "account_owner_name":"POHJANLINNAN RAUTATALO",
+    "currency":"EUR",
+    "test":true,
+    "bank_account":{
+      "id":1,
+      "certificate_id":1,
+      "environment_id":1,
+      "iban":"FI4819503000000010",
+      "bic":"NDEAFIHH",
+      "contract_id":"11111111",
+      "created_at":"2016-05-23T21:08:16.503Z",
+      "updated_at":"2016-05-23T21:08:16.503Z",
+      "balance":null,
+      "balance_date":null,
+      "test":true
+    }
+  }
+```
+
+Shows one statement. You can use the `Accept` header to control the output format. Valid values are:
+
+ - application/json
+ - text/xml (CAMT format)
+ - text/plain (TITO format)
+ - application/pdf
+
+### HTTP request
+
+`GET https://api.bankson.fi/bankaccountstatements/:id`
+
+
