@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://www.bankson.fi'>Bankson home page</a></li>
+            <li><a href='https://app.bankson.fi'>Sign Up for Bankson</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>You can view code examples in the dark area to the right.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl https://api.bankson.fi
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">4fc79757419b539937b94f1bd0f6e315765bbde4</code> with the bearer token obtained by Oauth2.</p>
+</blockquote>
+
+<p>All requests must include the <code class="prettyprint">Authorization</code> header to identify the requests.</p>
+
+<p>Authorization is based on OAuth2 specification. The grant types used are <code class="prettyprint">authorization_code</code> and <code class="prettyprint">refresh_token</code>.</p>
+
+<p>The endpoints are <code class="prettyprint">/oauth/authorize</code> for showing the authorization dialog to the user and <code class="prettyprint">/oauth/token</code> for fetching <code class="prettyprint">access_token</code> and <code class="prettyprint">refresh_token</code>.</p>
+
+<h1 id="testing">Testing</h1>
+
+<blockquote>
+<p>List certificates in test environment</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/api/certificates"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"X-Bankson-Environment: Test"</span>
+</code></pre>
+
+<p>Bankson has two environments, test and production. Both environments contain their own resources.
+When using test environment certificates all requests to banks are routed to the test environments provided by the banks. This way you can test integrations
+without using your actual bank account and money.</p>
+
+<p>Make sure to specify <code class="prettyprint">X-Bankson-Environment</code> header with the value <code class="prettyprint">Test</code> to make bankson use test data.</p>
+
+<h1 id="user-information">User information</h1>
+
+<h2 id="get-user-information">Get user information</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/me"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.211Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.211Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"environment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Oy"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.128Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.128Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bankAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="nt">"subscription"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint shows information about the logged in user and associated organization.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/me</code></p>
+
+<h1 id="certificates">Certificates</h1>
+
+<p>Certificates are used to communicate and authenticate to bank API&rsquo;s.</p>
+
+<h2 id="list-certificates">List certificates</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/certificates"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_target_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111A1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"certificate_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signing"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.493Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.493Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-16T09:04:04.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_before"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-16T09:04:04.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C=FI/CN=Nordea Demo Certificate/serialName=5780860238"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of all certificates associated with the organization.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/certificates</code></p>
+
+<h2 id="upload-certificate">Upload certificate</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/certificates/upload"</span> -X POST
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"Content-Type: multipart/form-data"</span>
+  -F <span class="nv">customer_id</span><span class="o">=</span>11111111
+  -F <span class="nv">target_id</span><span class="o">=</span>11111111A1
+  -F <span class="nv">pin</span><span class="o">=</span>WSNDEA1234
+  -F <span class="nv">bic</span><span class="o">=</span>NDEAFIHH
+  -F <span class="nv">certificate</span><span class="o">=</span>@WSNDEA1234.p12
+</code></pre>
+
+<blockquote>
+<p>JSON response, http status code <code class="prettyprint">201 Created</code></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_target_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111A1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"certificate_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signing"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.493Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.493Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-16T09:04:04.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_before"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-16T09:04:04.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C=FI/CN=Nordea Demo Certificate/serialName=5780860238"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Upload a <code class="prettyprint">.p12</code> bundle containing the certificate used for signing bank requests.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/certificates/upload</code></p>
+
+<h3 id="form-parameters">Form parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>The id number given by your bank</td>
+</tr>
+<tr>
+<td>target_id</td>
+<td>[optional] Used by some banks to further identify users</td>
+</tr>
+<tr>
+<td>pin</td>
+<td>Pin code of the <code class="prettyprint">.p12</code> bundle</td>
+</tr>
+<tr>
+<td>bic</td>
+<td>The BIC code of the bank</td>
+</tr>
+<tr>
+<td>certificate</td>
+<td>the actual <code class="prettyprint">.p12</code> file</td>
+</tr>
+</tbody></table>
+
+<h2 id="request-certificate-from-bank">Request certificate from bank</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/certificates/request"</span> -X POST
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{ "customer_id": "11111111", "target_id": "11111111A1", "transfer_key1": "1234567890", "bic": "NDEAFIHH" }'</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response, http status code <code class="prettyprint">201 Created</code></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"certificate_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signing"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_target_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111A1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T20:59:32.564Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T20:59:32.564Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-01T07:45:35.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_before"</span><span class="p">:</span><span class="s2">"2010-04-01T07:45:35.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C=FI/CN=eid onfile/serialName=2094370004"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>Request certificate from bank by using transfer keys provided by the bank</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/certificates/request</code></p>
+
+<h3 id="json-parameters">JSON parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>The id number given by your bank</td>
+</tr>
+<tr>
+<td>target_id</td>
+<td>[optional] Used by some banks to further identify users</td>
+</tr>
+<tr>
+<td>transfer_key1</td>
+<td>Transfer key (part1) or PIN code</td>
+</tr>
+<tr>
+<td>transfer_key2</td>
+<td>Trasnfer key (part2), if available</td>
+</tr>
+<tr>
+<td>bic</td>
+<td>The BIC code of the bank</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-value">Return value</h3>
+
+<p>Returns a list of certificates created by the request</p>
+
+<h2 id="delete-certificate">Delete certificate</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https:/api.bankson.fi/certificates/2"</span> -X DELETE
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>Empty response, http status code <code class="prettyprint">204 No content</code></p>
+</blockquote>
+
+<p>Delete certificate from Bankson</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE https://api.bankson.fi/certificates/:id</code></p>
+
+<h2 id="renew-certificate">Renew certificate</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https:/api.bankson.fi/certificates/4/renew"</span> -X POST
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"certificate_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signing"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_target_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111A1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T20:59:32.564Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T20:59:32.564Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-01T07:45:35.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"not_before"</span><span class="p">:</span><span class="s2">"2010-04-01T07:45:35.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C=FI/CN=eid onfile/serialName=2094370004"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Renew certificate already expired or nearing expiration.</p>
+
+<p>If the certificate has not yet expired, this request can be called with an empty body and the certificate
+will be renewed by using the certificate itself to sign the request.</p>
+
+<p>If the certificate already has expired, you need to obtain new transfer keys from the bank to re-request the certificate.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/certificates/:id/renew</code></p>
+
+<h3 id="json-attributes">JSON attributes</h3>
+
+<p>(Only needed to renew an expired certificate)</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>The id number given by your bank</td>
+</tr>
+<tr>
+<td>transfer_key1</td>
+<td>Transfer key (part1) or PIN code</td>
+</tr>
+<tr>
+<td>transfer_key2</td>
+<td>Trasnfer key (part2), if available</td>
+</tr>
+</tbody></table>
+
+<h1 id="bank-accounts">Bank accounts</h1>
+
+<h2 id="list-bank-accounts">List bank accounts</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccounts"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>List all bank accounts known to Bankson.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/bankaccounts</code></p>
+
+<h2 id="add-bank-account">Add bank account</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccounts"</span> -X POST
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{ "bic": "NDEAFIHH", "iban": "FI4819503000000010", "certificate_id": 1, "contract_id": "1234" }'</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new bank account and associates it with a certificate.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/bankaccounts</code></p>
+
+<h3 id="json-parameters">JSON parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bic</td>
+<td>BIC code of bank</td>
+</tr>
+<tr>
+<td>iban</td>
+<td>IBAN of the account to be added</td>
+</tr>
+<tr>
+<td>certificate_id</td>
+<td>id of the certificate associated by</td>
+</tr>
+<tr>
+<td>contract_id</td>
+<td>The identification given by the bank for services like CAMT</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-bank-account">Delete bank account</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccounts/5"</span> -X DELETE
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>Empty response, HTTP Status code 204</p>
+</blockquote>
+
+<p>Deletes a bank account.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://api.bankson.fi/bankaccounts/:id</code></p>
+
+          <h1 id="errors">Errors</h1>
+
+<p>The Bankson API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Something about the request is malformed or schema validation did not succeed.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; The valua provided in <code class="prettyprint">Authorization</code> header is invalid</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified resource could not be found</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; The specified resource cannot be represented in the format specified by <code class="prettyprint">Accept</code> request header.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+<p>Detailed information can be found in the response body. All error responses contain a <code class="prettyprint">message</code> property.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
