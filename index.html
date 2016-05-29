@@ -550,6 +550,890 @@ will be renewed by using the certificate itself to sign the request.</p>
 
 <p><code class="prettyprint">DELETE https://api.bankson.fi/bankaccounts/:id</code></p>
 
+<h1 id="bank-account-statements">Bank account statements</h1>
+
+<h2 id="list-statements">List statements</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccountstatements"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"from"</span><span class="p">:</span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"to"</span><span class="p">:</span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"legal_sequence_number"</span><span class="p">:</span><span class="s2">"043"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entries"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877C24002"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2205.6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Hyvityslasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">-3205.6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"HYVITYSLASKU 2425"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Lasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">"800056124147"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Lasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2211.2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">"800056124150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877A26324"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">3695</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"LUMILINNA KY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877A22357"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2229.3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"PELTOLA PEKKA OY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"LASKUT 3278/3251/4836"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584SM020048"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"780Zero Balancing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">10364.87</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"ABC-KONSERNI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"CMZ/0036540000 /5400"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032588WWNG0370"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">256.75</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"PELTOLA LIISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"LASKU 3265/HYVITYSLASKU 777"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584SM010117"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Nordea maksu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">1130.91</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"US IRON AND STEEL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"2584SMM0849971 /RFB/WT0000626289 000049302611118 MAKSAJAN ILMOITTAMA SAAJAN NIMI: NORTH CASTLE'S IRONHOUSE TORPANKATU 1111 PL 999 99999 POHJANLINNA FINLAND"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"LÄHETTÄJÄN OSOITE: 1239 EAST CIRCLESTREET PO BOX55/5 8877"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258873A20009"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"704Suoraveloituspalvelu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2120.68</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258874A35319"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"703Maksupäätepalvelu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5219</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"POHJANLINNAN RAUTATALO"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"OSTOT    111 KPL            5219,00 OIK.       0 KPL               0,00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"TILITYSERÄ 0120070"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584LV143623"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"720Tilisiirto"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">-81.1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"ABC-KONSERNI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">"19503000001414"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"00000324510099418709"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"001311     REC:5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"MAKSAJAN ILMOITTAMA SAAJAN NIMI: C/O ABCDEF GROUP OY"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"balances"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">30838.49</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"bookingDate"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">4409.27</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"availableAmount"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-24T22:45:48.672Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-24T22:45:48.672Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"servicer_name"</span><span class="p">:</span><span class="s2">"Nordea Pankki Suomi Oyj Y-tunn 1680235-8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"servicer_bic"</span><span class="p">:</span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_owner_name"</span><span class="p">:</span><span class="s2">"POHJANLINNAN RAUTATALO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_account"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"iban"</span><span class="p">:</span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bic"</span><span class="p">:</span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Fetches bank account statements from Bankson</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/bankaccountstatements</code></p>
+
+<h2 id="fetch-bank-account-statements-from-bank">Fetch bank account statements from bank</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccountstatements"</span> -X POST
+  -H <span class="s2">"Authorization: Beare 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{ "certificate_id": 1 }'</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"from"</span><span class="p">:</span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"to"</span><span class="p">:</span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"legal_sequence_number"</span><span class="p">:</span><span class="s2">"043"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entries"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877C24002"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2205.6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Hyvityslasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">-3205.6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"HYVITYSLASKU 2425"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Lasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">"800056124147"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Lasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2211.2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">"800056124150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877A26324"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">3695</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"LUMILINNA KY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877A22357"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2229.3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"PELTOLA PEKKA OY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"LASKUT 3278/3251/4836"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584SM020048"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"780Zero Balancing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">10364.87</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"ABC-KONSERNI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"CMZ/0036540000 /5400"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032588WWNG0370"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">256.75</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"PELTOLA LIISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"LASKU 3265/HYVITYSLASKU 777"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584SM010117"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Nordea maksu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">1130.91</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"US IRON AND STEEL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"2584SMM0849971 /RFB/WT0000626289 000049302611118 MAKSAJAN ILMOITTAMA SAAJAN NIMI: NORTH CASTLE'S IRONHOUSE TORPANKATU 1111 PL 999 99999 POHJANLINNA FINLAND"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"LÄHETTÄJÄN OSOITE: 1239 EAST CIRCLESTREET PO BOX55/5 8877"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258873A20009"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"704Suoraveloituspalvelu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2120.68</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258874A35319"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"703Maksupäätepalvelu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5219</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"POHJANLINNAN RAUTATALO"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"OSTOT    111 KPL            5219,00 OIK.       0 KPL               0,00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"TILITYSERÄ 0120070"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584LV143623"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"720Tilisiirto"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">-81.1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"ABC-KONSERNI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">"19503000001414"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"00000324510099418709"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"001311     REC:5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"MAKSAJAN ILMOITTAMA SAAJAN NIMI: C/O ABCDEF GROUP OY"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"balances"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">30838.49</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"bookingDate"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">4409.27</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"availableAmount"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-24T22:45:48.672Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-24T22:45:48.672Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"servicer_name"</span><span class="p">:</span><span class="s2">"Nordea Pankki Suomi Oyj Y-tunn 1680235-8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"servicer_bic"</span><span class="p">:</span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_owner_name"</span><span class="p">:</span><span class="s2">"POHJANLINNAN RAUTATALO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_account"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"iban"</span><span class="p">:</span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bic"</span><span class="p">:</span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Updates bank account statements from the bank</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/bankaccountstatments</code></p>
+
+<h3 id="json-params">JSON params</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>certificate_id</td>
+<td>The certificate to use for bank acount statement refresh</td>
+</tr>
+</tbody></table>
+
+<h2 id="show-single-statement">Show single statement</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccountstatements/12"</span>
+  -H <span class="s2">"Accept: application/json"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"from"</span><span class="p">:</span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"to"</span><span class="p">:</span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"legal_sequence_number"</span><span class="p">:</span><span class="s2">"043"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entries"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877C24002"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2205.6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Hyvityslasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">-3205.6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"HYVITYSLASKU 2425"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Lasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">"800056124147"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Lasku"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2211.2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"RUUVI JA MUTTERI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">"800056124150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877A26324"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">3695</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"LUMILINNA KY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258877A22357"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2229.3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"PELTOLA PEKKA OY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"LASKUT 3278/3251/4836"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584SM020048"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"780Zero Balancing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">10364.87</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"ABC-KONSERNI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"CMZ/0036540000 /5400"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032588WWNG0370"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Pano"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">256.75</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"PELTOLA LIISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"LASKU 3265/HYVITYSLASKU 777"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584SM010117"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"710Nordea maksu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">1130.91</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"US IRON AND STEEL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"2584SMM0849971 /RFB/WT0000626289 000049302611118 MAKSAJAN ILMOITTAMA SAAJAN NIMI: NORTH CASTLE'S IRONHOUSE TORPANKATU 1111 PL 999 99999 POHJANLINNA FINLAND"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"LÄHETTÄJÄN OSOITE: 1239 EAST CIRCLESTREET PO BOX55/5 8877"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258873A20009"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"704Suoraveloituspalvelu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">2120.68</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"060303258874A35319"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"703Maksupäätepalvelu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5219</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"POHJANLINNAN RAUTATALO"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"OSTOT    111 KPL            5219,00 OIK.       0 KPL               0,00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"TILITYSERÄ 0120070"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="s2">"0603032584LV143623"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="s2">"720Tilisiirto"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">-81.1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver"</span><span class="p">:</span><span class="s2">"ABC-KONSERNI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="s2">"19503000001414"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"additional_information"</span><span class="p">:[</span><span class="w">
+          </span><span class="s2">"00000324510099418709"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"001311     REC:5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"MAKSAJAN ILMOITTAMA SAAJAN NIMI: C/O ABCDEF GROUP OY"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"balances"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="s2">"2006-03-02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">30838.49</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"bookingDate"</span><span class="p">:</span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">4409.27</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"availableAmount"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-24T22:45:48.672Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-24T22:45:48.672Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"servicer_name"</span><span class="p">:</span><span class="s2">"Nordea Pankki Suomi Oyj Y-tunn 1680235-8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"servicer_bic"</span><span class="p">:</span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_owner_name"</span><span class="p">:</span><span class="s2">"POHJANLINNAN RAUTATALO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_account"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"iban"</span><span class="p">:</span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bic"</span><span class="p">:</span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="s2">"11111111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-05-23T21:08:16.503Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"test"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Shows one statement. You can use the <code class="prettyprint">Accept</code> header to control the output format. Valid values are:</p>
+
+<ul>
+<li>application/json</li>
+<li>text/xml (CAMT format)</li>
+<li>text/plain (TITO format)</li>
+<li>application/pdf</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/bankaccountstatements/:id</code></p>
+
+<h1 id="payments">Payments</h1>
+
+<h2 id="list-payments">List payments</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/payments"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">608.3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Työeläkeyhtiö Elo"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recipient_iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI2721533800005022"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recipient_bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"end_to_end_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1417712682855-G-1-P-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_information_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1417712682855-G-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1417712682855"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:44.102Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:44.102Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:11.906Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:11.906Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>Lists all payments made through Bankson.</p>
+
+<p><code class="prettyprint">payment.status</code> can be one of values:</p>
+
+<ul>
+<li><code class="prettyprint">null</code> - no payment status available, use the <code class="prettyprint">POST /payments/feedback</code> endpoint to refresh</li>
+<li><code class="prettyprint">ACTC</code> - the payment request is accepted by the bank with a technical check</li>
+<li><code class="prettyprint">ACCP</code> - the payment has been checked for formal validity</li>
+<li><code class="prettyprint">ACSP</code> - the payment has been processed</li>
+<li><code class="prettyprint">PNDG</code> - the payment is pending for processing</li>
+<li><code class="prettyprint">RJCT</code> - the bank has rejected the payment, more information can be found from the <code class="prettyprint">payment.status_details</code> field</li>
+</ul>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/payments</code></p>
+
+<h2 id="add-payment">Add payment</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/payments"</span> -X POST
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{"amount":308.3,"recipient_name":"Työeläkeyhtiö Elo","recipient_iban":"FI2721533800005022","recipient_bic":"NDEAFIHH","payment_date":"2014-12-04","reference_number":"13","vendor_reference":"23","from":{"iban":"FI4819503000000010","bic":"NDEAFIHH"}}'</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response (http status code <code class="prettyprint">201 Created</code>)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">608.3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Työeläkeyhtiö Elo"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recipient_iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI2721533800005022"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"recipient_bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"end_to_end_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1417712682855-G-1-P-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_information_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1417712682855-G-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1417712682855"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:44.102Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:44.102Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:11.906Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-04T17:04:11.906Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Sends payment to bank and stores into bankson.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/payments</code></p>
+
+<h3 id="json-schema">JSON Schema</h3>
+
+<p><a href="/#schema-payment">Payment</a></p>
+
+<h2 id="update-payment-statuses">Update payment statuses</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/payments/feedback"</span> -X POST
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Updates payment status from bank for all pending payments.</p>
+
           <h1 id="errors">Errors</h1>
 
 <p>The Bankson API uses the following error codes:</p>
@@ -587,6 +1471,321 @@ will be renewed by using the certificate itself to sign the request.</p>
 </tbody></table>
 
 <p>Detailed information can be found in the response body. All error responses contain a <code class="prettyprint">message</code> property.</p>
+
+          <h1 id="json-schemas">JSON Schemas</h1>
+
+<h2 id="schema-application">Schema: Application</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Application"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"redirect_uri"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uri"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="schema-bankaccount">Schema: BankAccount</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/BankAccount"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="schema-bankaccountstatement">Schema: BankAccountStatement</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/BankAccountStatement"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"account_owner_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"available_amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The statement rows"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"additional_information"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional information for one row. Messages etc."</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The archive identifier given by the bank"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"booking_information"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"entry_reference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The row number in the statement"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"receiver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"receiver_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"value_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The start date of the statement period"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"legal_sequence_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The sequence number for the statement given by the bank"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"servicer_bic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIC of the bank"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"servicer_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of the bank"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The end date of the statement period"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="schema-certificate">Schema: Certificate</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Certificate"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"not_after"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"readonly"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"not_before"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"readonly"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"readonly"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="schema-environment">Schema: Environment</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Environment"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="schema-payment">Schema: Payment</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Payment"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"recipient_bic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"recipient_iban"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"referenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"vendor_reference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From which bank account should the charge be done"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="schema-user">Schema: User</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
       </div>
       <div class="dark-box">
