@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - errors
+  - schemas
 
 search: true
 ---
