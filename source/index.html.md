@@ -1137,4 +1137,138 @@ Shows one statement. You can use the `Accept` header to control the output forma
 
 `GET https://api.bankson.fi/bankaccountstatements/:id`
 
+# Payments
 
+## List payments
+
+```shell
+curl "https://api.bankson.fi/payments"
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+> JSON response
+
+```json
+[{
+  "id": 1,
+  "bank_account_id": 5,
+  "environment_id": 2,
+  "amount": 608.3,
+  "recipient_name": "Työeläkeyhtiö Elo",
+  "recipient_iban": "FI2721533800005022",
+  "recipient_bic": "NDEAFIHH",
+  "payment_date": "2014-12-04",
+  "reference_number": "13",
+  "vendor_reference": "23",
+  "end_to_end_id": "1417712682855-G-1-P-1",
+  "payment_information_id": "1417712682855-G-1",
+  "message_id": "1417712682855",
+  "created_at": "2014-12-04T17:04:44.102Z",
+  "updated_at": "2014-12-04T17:04:44.102Z",
+  "status": null,
+  "status_details": null,
+  "test": false,
+  "bank_account": {
+    "id": 5,
+    "certificate_id": 14,
+    "environment_id": 2,
+    "iban": "FI4819503000000010",
+    "bic": "NDEAFIHH",
+    "contract_id": "111111111",
+    "created_at": "2014-12-04T17:04:11.906Z",
+    "updated_at": "2014-12-04T17:04:11.906Z",
+    "balance": null,
+    "balance_date": null,
+    "test": false
+  }
+}]
+```
+
+Lists all payments made through Bankson.
+
+`payment.status` can be one of values:
+
+ * `null` - no payment status available, use the `POST /payments/feedback` endpoint to refresh
+ * `ACTC` - the payment request is accepted by the bank with a technical check
+ * `ACCP` - the payment has been checked for formal validity
+ * `ACSP` - the payment has been processed
+ * `PNDG` - the payment is pending for processing
+ * `RJCT` - the bank has rejected the payment, more information can be found from the `payment.status_details` field
+
+### HTTP Request
+
+`GET https://api.bankson.fi/payments`
+
+## Add payment
+
+```shell
+curl "https://api.bankson.fi/payments" -X POST
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+  -H "Content-Type: application/json"
+  -d '{"amount":308.3,"recipient_name":"Työeläkeyhtiö Elo","recipient_iban":"FI2721533800005022","recipient_bic":"NDEAFIHH","payment_date":"2014-12-04","reference_number":"13","vendor_reference":"23","from":{"iban":"FI4819503000000010","bic":"NDEAFIHH"}}'
+```
+
+> JSON response (http status code `201 Created`)
+
+```json
+{
+  "id": 1,
+  "bank_account_id": 5,
+  "environment_id": 2,
+  "amount": 608.3,
+  "recipient_name": "Työeläkeyhtiö Elo",
+  "recipient_iban": "FI2721533800005022",
+  "recipient_bic": "NDEAFIHH",
+  "payment_date": "2014-12-04",
+  "reference_number": "13",
+  "vendor_reference": "23",
+  "end_to_end_id": "1417712682855-G-1-P-1",
+  "payment_information_id": "1417712682855-G-1",
+  "message_id": "1417712682855",
+  "created_at": "2014-12-04T17:04:44.102Z",
+  "updated_at": "2014-12-04T17:04:44.102Z",
+  "status": null,
+  "status_details": null,
+  "test": false,
+  "bank_account": {
+    "id": 5,
+    "certificate_id": 14,
+    "environment_id": 2,
+    "iban": "FI4819503000000010",
+    "bic": "NDEAFIHH",
+    "contract_id": "111111111",
+    "created_at": "2014-12-04T17:04:11.906Z",
+    "updated_at": "2014-12-04T17:04:11.906Z",
+    "balance": null,
+    "balance_date": null,
+    "test": false
+  }
+}
+```
+
+Sends payment to bank and stores into bankson.
+
+### HTTP request
+
+`POST https://api.bankson.fi/payments`
+
+### JSON Schema
+
+[Payment](/#schema-payment)
+
+## Update payment statuses
+
+```shell
+curl "https://api.bankson.fi/payments/feedback" -X POST
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+> JSON response
+
+```json
+{
+  "message": "OK"
+}
+```
+
+Updates payment status from bank for all pending payments.
