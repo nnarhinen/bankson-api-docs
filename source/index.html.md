@@ -49,7 +49,7 @@ All requests must include the `Authorization` header to identify the requests.
 
 Authorization is based on OAuth2 specification. The grant types used are `authorization_code` and `refresh_token`.
 
-The endpoints are `/oauth/authorize` for showing the authorization dialog to the user and `/oauth/token` for fetching `access_token` and `refresh_token`.
+The endpoints are `https://www.bankson.fi/oauth/authorize` for showing the authorization dialog to the user and `https://www.bankson.fi/oauth/token` for fetching `access_token` and `refresh_token`.
 
 # Testing
 
