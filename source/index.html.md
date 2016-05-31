@@ -407,6 +407,16 @@ curl "https://api.bankson.fi/bankaccounts"
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.bankAccounts.fetch().then(function(bankAccounts) {
+  // List
+});
+```
+
 > JSON response
 
 ```json
@@ -438,6 +448,19 @@ curl "https://api.bankson.fi/bankaccounts" -X POST
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
   -H "Content-Type: application/json"
   -d '{ "bic": "NDEAFIHH", "iban": "FI4819503000000010", "certificate_id": 1, "contract_id": "1234" }'
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.bankAccounts.create({
+  bic: 'NDEAFIHH',
+  iban: 'FI4819503000000010',
+  certificate_id: 1,
+  contract_id: '1234'
+});
 ```
 
 > JSON response
@@ -478,6 +501,16 @@ contract_id | The identification given by the bank for services like CAMT
 ```shell
 curl "https://api.bankson.fi/bankaccounts/5" -X DELETE
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.bankAccounts.remove(5).then(function() {
+  // Bank accoutn created
+});
 ```
 
 > Empty response, HTTP Status code 204
