@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,6 +102,7 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -120,6 +121,9 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
+<p>Welcome to Bankson API! This documentation describes the endpoints Bankson offers. Samples for calling the API are given both with raw curl commands
+as well with the official <a href="https://github.com/banksonfi/bankson-js">Node.js client library</a>.</p>
+
 <p>You can view code examples in the dark area to the right.</p>
 
 <h1 id="authentication">Authentication</h1>
@@ -127,6 +131,11 @@
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+</code></pre>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl https://api.bankson.fi
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
@@ -151,6 +160,15 @@ curl https://api.bankson.fi
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
   -H <span class="s2">"X-Bankson-Environment: Test"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span><span class="p">,</span>
+  <span class="na">test</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">fetch</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">certificates</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Do something with certificates</span>
+<span class="p">});</span>
+</code></pre>
 
 <p>Bankson has two environments, test and production. Both environments contain their own resources.
 When using test environment certificates all requests to banks are routed to the test environments provided by the banks. This way you can test integrations
@@ -163,6 +181,14 @@ without using your actual bank account and money.</p>
 <h2 id="get-user-information">Get user information</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/me"</span>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">me</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Current user'</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">user</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -215,6 +241,14 @@ without using your actual bank account and money.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/certificates"</span>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">fetch</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">certificates</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something with certificates</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response</p>
@@ -250,6 +284,19 @@ without using your actual bank account and money.</p>
   -F <span class="nv">pin</span><span class="o">=</span>WSNDEA1234
   -F <span class="nv">bic</span><span class="o">=</span>NDEAFIHH
   -F <span class="nv">certificate</span><span class="o">=</span>@WSNDEA1234.p12
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">upload</span><span class="p">(</span>
+  <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s1">'WSNDEA1234.p12'</span><span class="p">),</span>
+  <span class="p">{</span> <span class="na">customer_id</span><span class="p">:</span> <span class="s1">'11111111'</span><span class="p">,</span> <span class="na">target_id</span><span class="p">:</span> <span class="s1">'11111111A1'</span><span class="p">,</span> <span class="na">pin</span><span class="p">:</span> <span class="s1">'WSNDEA1234'</span><span class="p">,</span> <span class="na">bic</span><span class="p">:</span> <span class="s1">'NDEAFIHH'</span> <span class="p">}</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">certificate</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// certificate uploaded</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -312,6 +359,19 @@ without using your actual bank account and money.</p>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s1">'{ "customer_id": "11111111", "target_id": "11111111A1", "transfer_key1": "1234567890", "bic": "NDEAFIHH" }'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">request</span><span class="p">({</span>
+  <span class="na">customer_id</span><span class="p">:</span> <span class="s1">'11111111'</span><span class="p">,</span>
+  <span class="na">target_id</span><span class="p">:</span> <span class="s1">'11111111A1'</span><span class="p">,</span>
+  <span class="na">transfer_key1</span><span class="p">:</span> <span class="s1">'1234567890'</span><span class="p">,</span>
+  <span class="na">bic</span><span class="p">:</span> <span class="s1">'NDEAFIHH'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">certificates</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// might be multiple certificates</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -377,6 +437,14 @@ without using your actual bank account and money.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https:/api.bankson.fi/certificates/2"</span> -X DELETE
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// certificate deleted</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>Empty response, http status code <code class="prettyprint">204 No content</code></p>
@@ -391,6 +459,16 @@ without using your actual bank account and money.</p>
 <h2 id="renew-certificate">Renew certificate</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https:/api.bankson.fi/certificates/4/renew"</span> -X POST
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">renew</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">certificate</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Certificate renewed</span>
+<span class="p">});</span>
+
+<span class="c1">// If certificate has already expired, provide new transferkeys as second parameter to renew()</span>
 </code></pre>
 
 <blockquote>
@@ -453,6 +531,14 @@ will be renewed by using the certificate itself to sign the request.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccounts"</span>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">bankAccounts</span><span class="p">.</span><span class="nx">fetch</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">bankAccounts</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// List</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response</p>
@@ -483,6 +569,17 @@ will be renewed by using the certificate itself to sign the request.</p>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s1">'{ "bic": "NDEAFIHH", "iban": "FI4819503000000010", "certificate_id": 1, "contract_id": "1234" }'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">bankAccounts</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">bic</span><span class="p">:</span> <span class="s1">'NDEAFIHH'</span><span class="p">,</span>
+  <span class="na">iban</span><span class="p">:</span> <span class="s1">'FI4819503000000010'</span><span class="p">,</span>
+  <span class="na">certificate_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">contract_id</span><span class="p">:</span> <span class="s1">'1234'</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -539,6 +636,14 @@ will be renewed by using the certificate itself to sign the request.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccounts/5"</span> -X DELETE
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">bankAccounts</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Bank accoutn deleted</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>Empty response, HTTP Status code 204</p>
@@ -555,6 +660,14 @@ will be renewed by using the certificate itself to sign the request.</p>
 <h2 id="list-statements">List statements</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccountstatements"</span>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">bankAccountStatements</span><span class="p">.</span><span class="nx">fetch</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">statements</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Do something</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -800,6 +913,15 @@ will be renewed by using the certificate itself to sign the request.</p>
   -H <span class="s2">"Authorization: Beare 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s1">'{ "certificate_id": 1 }'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">certificateId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">bankAccountStatements</span><span class="p">.</span><span class="nx">refresh</span><span class="p">(</span><span class="nx">certificateId</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">statements</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'new statements'</span><span class="p">,</span> <span class="nx">statements</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -1058,6 +1180,16 @@ will be renewed by using the certificate itself to sign the request.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/bankaccountstatements/12"</span>
   -H <span class="s2">"Accept: application/json"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">bankAccountStatements</span><span class="p">.</span><span class="nx">statementXml</span><span class="p">(</span><span class="mi">12</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">xmlBuffer</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">});</span>
+<span class="c1">// client.bankAccountStatements.statementHtml(12)...</span>
+<span class="c1">// client.bankAccountStatements.statementText(12)...</span>
+<span class="c1">// client.bankAccountStatements.statementPdf(12)...</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response</p>
@@ -1308,6 +1440,14 @@ will be renewed by using the certificate itself to sign the request.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/payments"</span>
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">list</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payments</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Payments</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response</p>
@@ -1370,6 +1510,25 @@ will be renewed by using the certificate itself to sign the request.</p>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s1">'{"amount":308.3,"recipient_name":"Työeläkeyhtiö Elo","recipient_iban":"FI2721533800005022","recipient_bic":"NDEAFIHH","payment_date":"2014-12-04","reference_number":"13","vendor_reference":"23","from":{"iban":"FI4819503000000010","bic":"NDEAFIHH"}}'</span>
 </code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mf">308.3</span><span class="p">,</span>
+  <span class="na">recipient_name</span><span class="p">:</span> <span class="s1">'Työeläkeyhtiö Elo'</span><span class="p">,</span>
+  <span class="na">recipient_iban</span><span class="p">:</span> <span class="s1">'FI2721533800005022'</span><span class="p">,</span>
+  <span class="na">recipient_bic</span><span class="p">:</span> <span class="s1">'NDEAFIHH'</span><span class="p">,</span>
+  <span class="na">payment_date</span><span class="p">:</span> <span class="s1">'2014-12-04'</span><span class="p">,</span>
+  <span class="na">reference_number</span><span class="p">:</span> <span class="s1">'13'</span><span class="p">,</span>
+  <span class="na">vendor_reference</span><span class="p">:</span> <span class="s1">'23'</span> <span class="c1">// Free form string, can be used to identify payments with your own system</span>
+<span class="p">},</span> <span class="p">{</span> <span class="c1">// From which account payment will be made</span>
+  <span class="na">iban</span><span class="p">:</span> <span class="s1">'FI4819503000000010'</span><span class="p">,</span>
+  <span class="na">bic</span><span class="p">:</span> <span class="s1">'NDEAFIHH'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Payment created and sent to bank</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response (http status code <code class="prettyprint">201 Created</code>)</p>
@@ -1422,6 +1581,14 @@ will be renewed by using the certificate itself to sign the request.</p>
 <h2 id="update-payment-statuses">Update payment statuses</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/payments/feedback"</span> -X POST
   -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">fetchFeedback</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Payments updated with current status</span>
+<span class="p">});</span>
 </code></pre>
 
 <blockquote>
@@ -1791,6 +1958,7 @@ will be renewed by using the certificate itself to sign the request.</p>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
