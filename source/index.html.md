@@ -509,7 +509,7 @@ var client = new Client({
   bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
 });
 client.bankAccounts.remove(5).then(function() {
-  // Bank accoutn created
+  // Bank accoutn deleted
 });
 ```
 
@@ -1311,6 +1311,16 @@ curl "https://api.bankson.fi/payments"
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.payments.list().then(function(payments) {
+  // Payments
+});
+```
+
 > JSON response
 
 ```json
@@ -1373,6 +1383,29 @@ curl "https://api.bankson.fi/payments" -X POST
   -d '{"amount":308.3,"recipient_name":"Työeläkeyhtiö Elo","recipient_iban":"FI2721533800005022","recipient_bic":"NDEAFIHH","payment_date":"2014-12-04","reference_number":"13","vendor_reference":"23","from":{"iban":"FI4819503000000010","bic":"NDEAFIHH"}}'
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.payments.create({
+  amount: 308.3,
+  recipient_name: 'Työeläkeyhtiö Elo',
+  recipient_iban: 'FI2721533800005022',
+  recipient_bic: 'NDEAFIHH',
+  payment_date: '2014-12-04',
+  reference_number: '13',
+  vendor_reference: '23' // Free form string, can be used to identify payments with your own system
+}, { // From which account payment will be made
+  iban: 'FI4819503000000010',
+  bic: 'NDEAFIHH'
+}).then(function(payment) {
+  // Payment created and sent to bank
+});
+```
+
+
+
 > JSON response (http status code `201 Created`)
 
 ```json
@@ -1426,6 +1459,16 @@ Sends payment to bank and stores into bankson.
 ```shell
 curl "https://api.bankson.fi/payments/feedback" -X POST
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.payments.fetchFeedback().then(function() {
+  // Payments updated with current status
+});
 ```
 
 > JSON response
