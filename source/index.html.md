@@ -530,6 +530,16 @@ curl "https://api.bankson.fi/bankaccountstatements"
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.bankAccountStatements.fetch().then(function(statements) {
+  // Do something
+});
+```
+
 > JSON response
 
 ```json
@@ -775,6 +785,17 @@ curl "https://api.bankson.fi/bankaccountstatements" -X POST
   -H "Authorization: Beare 4fc79757419b539937b94f1bd0f6e315765bbde4"
   -H "Content-Type: application/json"
   -d '{ "certificate_id": 1 }'
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+var certificateId = 1;
+client.bankAccountStatements.refresh(certificateId).then(function(statements) {
+  console.log('new statements', statements);
+});
 ```
 
 > JSON response
@@ -1026,6 +1047,18 @@ certificate_id | The certificate to use for bank acount statement refresh
 ```shell
 curl "https://api.bankson.fi/bankaccountstatements/12"
   -H "Accept: application/json"
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.bankAccountStatements.statementXml(12).then(function(xmlBuffer) {
+});
+// client.bankAccountStatements.statementHtml(12)...
+// client.bankAccountStatements.statementText(12)...
+// client.bankAccountStatements.statementPdf(12)...
 ```
 
 > JSON response
