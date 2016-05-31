@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
+  - javascript
 
 toc_footers:
   - <a href='http://www.bankson.fi'>Bankson home page</a>
@@ -18,17 +19,29 @@ search: true
 
 # Introduction
 
+Welcome to Bankson API! This documentation describes the endpoints Bankson offers. Samples for calling the API are given both with raw curl commands
+as well with the official [Node.js client library](https://github.com/banksonfi/bankson-js).
+
 You can view code examples in the dark area to the right.
 
 # Authentication
 
 > To authorize, use this code:
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+```
+
 ```shell
 # With shell, you can just pass the correct header with each request
 curl https://api.bankson.fi
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
+
+
 
 > Make sure to replace `4fc79757419b539937b94f1bd0f6e315765bbde4` with the bearer token obtained by Oauth2.
 
@@ -48,6 +61,17 @@ curl "https://api.bankson.fi/api/certificates"
   -H "X-Bankson-Environment: Test"
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4',
+  test: true
+});
+client.certificates.fetch().then(function(certificates) {
+  // Do something with certificates
+});
+```
+
 Bankson has two environments, test and production. Both environments contain their own resources.
 When using test environment certificates all requests to banks are routed to the test environments provided by the banks. This way you can test integrations
 without using your actual bank account and money.
@@ -61,6 +85,16 @@ Make sure to specify `X-Bankson-Environment` header with the value `Test` to mak
 ```shell
 curl "https://api.bankson.fi/me"
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.me().then(function(resp) {
+  console.log('Current user', resp.user);
+});
 ```
 
 > The above command returns JSON structured like this:
@@ -117,6 +151,16 @@ curl "https://api.bankson.fi/certificates"
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.certificates.fetch().then(function(certificates) {
+  // do something with certificates
+});
+```
+
 > JSON response
 
 ```json
@@ -154,6 +198,22 @@ curl "https://api.bankson.fi/certificates/upload" -X POST
   -F bic=NDEAFIHH
   -F certificate=@WSNDEA1234.p12
 ```
+
+```javascript
+var Client = require('bankson-js')
+  , fs = require('fs');
+
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.certificates.upload(
+  fs.createReadStream('WSNDEA1234.p12'),
+  { customer_id: '11111111', target_id: '11111111A1', pin: 'WSNDEA1234', bic: 'NDEAFIHH' }
+}).then(function(certificate) {
+  // certificate uploaded
+});
+```
+
 > JSON response, http status code `201 Created`
 
 ```json
@@ -196,6 +256,21 @@ curl "https://api.bankson.fi/certificates/request" -X POST
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
   -H "Content-Type: application/json"
   -d '{ "customer_id": "11111111", "target_id": "11111111A1", "transfer_key1": "1234567890", "bic": "NDEAFIHH" }'
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.certificates.request({
+  customer_id: '11111111',
+  target_id: '11111111A1',
+  transfer_key1: '1234567890',
+  bic: 'NDEAFIHH'
+}).then(function(certificates) {
+  // might be multiple certificates
+});
 ```
 
 > JSON response, http status code `201 Created`
@@ -245,6 +320,16 @@ curl "https:/api.bankson.fi/certificates/2" -X DELETE
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
 
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.certificates.remove(2).then(function() {
+  // certificate deleted
+});
+```
+
 > Empty response, http status code `204 No content`
 
 Delete certificate from Bankson
@@ -259,6 +344,19 @@ Delete certificate from Bankson
 curl "https:/api.bankson.fi/certificates/4/renew" -X POST
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+client.certificates.renew(4).then(function(certificate) {
+  // Certificate renewed
+});
+
+// If certificate has already expired, provide new transferkeys as second parameter to renew()
+```
+
 
 > JSON response
 
