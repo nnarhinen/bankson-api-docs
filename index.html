@@ -1601,6 +1601,207 @@ will be renewed by using the certificate itself to sign the request.</p>
 
 <p>Updates payment status from bank for all pending payments.</p>
 
+<h1 id="inbound-payments-reference-payments">Inbound Payments (Reference payments)</h1>
+
+<h2 id="list-inbound-payments">List inbound payments</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/inboundpayments"</span>
+  -H <span class="s2">"Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">// for filtering results</span>
+  <span class="c1">//reference_number: '13'</span>
+  <span class="c1">//since: '2016-05-10'</span>
+<span class="p">};</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">inboundPayments</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">opts</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payments</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Payments</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">64.9</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"debitor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MYYRY VILJO"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03032950PS120058"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"890948"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.299Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.299Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"inbound_payment_batch_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">},{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">316</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"debitor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COPPERHOUSE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0306258877B40058"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-05T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"890948"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.952Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.952Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"inbound_payment_batch_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>Lists all received reference payments</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.bankson.fi/inboundpayments</code></p>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<p>The result set can be filtered by query parameters</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference_number</td>
+<td>Only show payments matching the reference number</td>
+</tr>
+<tr>
+<td>since</td>
+<td>Only show payments newer thant provided timestamp</td>
+</tr>
+</tbody></table>
+
+<h2 id="refresh-payments-from-bank">Refresh payments from bank</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/inboundpayments"</span> -X POST
+  -H <span class="s2">"Authorization: Beare 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{ "certificate_id": 1 }'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bankson-js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">bearerToken</span><span class="p">:</span> <span class="s1">'4fc79757419b539937b94f1bd0f6e315765bbde4'</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">certificateId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">inboundPayments</span><span class="p">.</span><span class="nx">refresh</span><span class="p">(</span><span class="nx">certificateId</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payments</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'new payments'</span><span class="p">,</span> <span class="nx">payments</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">64.9</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"debitor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MYYRY VILJO"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-03"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03032950PS120058"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-02T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"890948"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.299Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.299Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"inbound_payment_batch_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">},{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">316</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"debitor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COPPERHOUSE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"archive_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0306258877B40058"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"booking_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2006-03-05T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"890948"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.952Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-02T17:14:20.952Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"inbound_payment_batch_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"certificate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"environment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FI4819503000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NDEAFIHH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contract_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-21T21:50:11.800Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>Refreshes all inbound payments from bank.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.bankson.fi/inboundpayments</code></p>
+
+<h3 id="json-params">JSON params</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>certificate_id</td>
+<td>The certificate to use</td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.bankson.fi/payments"</span> -i -X POST
   -H <span class="s2">"Authorization: 4fc79757419b539937b94f1bd0f6e315765bbde4"</span>
