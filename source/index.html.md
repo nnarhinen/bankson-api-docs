@@ -1480,3 +1480,196 @@ client.payments.fetchFeedback().then(function() {
 ```
 
 Updates payment status from bank for all pending payments.
+
+# Inbound Payments (Reference payments)
+
+## List inbound payments
+
+```shell
+curl "https://api.bankson.fi/inboundpayments"
+  -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+var opts = { // for filtering results
+  //reference_number: '13'
+  //since: '2016-05-10'
+};
+client.inboundPayments.fetch(opts).then(function(payments) {
+  // Payments
+});
+```
+
+> JSON response
+
+```json
+[{
+  "id": 266,
+  "bank_account_id": 22,
+  "environment_id": 2,
+  "amount": 64.9,
+  "debitor_name": "MYYRY VILJO",
+  "payment_date": "2006-03-03",
+  "archive_id": "03032950PS120058",
+  "booking_date": "2006-03-02T22:00:00.000Z",
+  "reference_number": "890948",
+  "created_at": "2016-06-02T17:14:20.299Z",
+  "updated_at": "2016-06-02T17:14:20.299Z",
+  "inbound_payment_batch_id": 19,
+  "test": true,
+  "bank_account": {
+    "id": 22,
+    "certificate_id": 26,
+    "environment_id": 2,
+    "iban": "FI4819503000000010",
+    "bic": "NDEAFIHH",
+    "contract_id": null,
+    "created_at": "2016-05-21T21:50:11.800Z",
+    "updated_at": "2016-05-21T21:50:11.800Z",
+    "balance": null,
+    "balance_date": null,
+    "test": true
+  }
+},{
+  "id": 316,
+  "bank_account_id": 22,
+  "environment_id": 2,
+  "amount": 40,
+  "debitor_name": "COPPERHOUSE",
+  "payment_date": "2006-03-06",
+  "archive_id": "0306258877B40058",
+  "booking_date": "2006-03-05T22:00:00.000Z",
+  "reference_number": "890948",
+  "created_at": "2016-06-02T17:14:20.952Z",
+  "updated_at": "2016-06-02T17:14:20.952Z",
+  "inbound_payment_batch_id": 21,
+  "test": true,
+  "bank_account": {
+    "id": 22,
+    "certificate_id": 26,
+    "environment_id": 2,
+    "iban": "FI4819503000000010",
+    "bic": "NDEAFIHH",
+    "contract_id": null,
+    "created_at": "2016-05-21T21:50:11.800Z",
+    "updated_at": "2016-05-21T21:50:11.800Z",
+    "balance": null,
+    "balance_date": null,
+    "test": true
+  }
+}]
+```
+
+Lists all received reference payments
+
+### HTTP Request
+
+`GET https://api.bankson.fi/inboundpayments`
+
+### Query parameters
+
+The result set can be filtered by query parameters
+
+Parameter        | Description
+---------------- | ------------------------------------------------
+reference_number | Only show payments matching the reference number
+since            | Only show payments newer thant provided timestamp
+
+## Refresh payments from bank
+
+```shell
+curl "https://api.bankson.fi/inboundpayments" -X POST
+  -H "Authorization: Beare 4fc79757419b539937b94f1bd0f6e315765bbde4"
+  -H "Content-Type: application/json"
+  -d '{ "certificate_id": 1 }'
+```
+
+```javascript
+var Client = require('bankson-js');
+var client = new Client({
+  bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
+});
+var certificateId = 1;
+client.inboundPayments.refresh(certificateId).then(function(payments) {
+  console.log('new payments', payments);
+});
+```
+
+> JSON response
+
+
+```json
+[{
+  "id": 266,
+  "bank_account_id": 22,
+  "environment_id": 2,
+  "amount": 64.9,
+  "debitor_name": "MYYRY VILJO",
+  "payment_date": "2006-03-03",
+  "archive_id": "03032950PS120058",
+  "booking_date": "2006-03-02T22:00:00.000Z",
+  "reference_number": "890948",
+  "created_at": "2016-06-02T17:14:20.299Z",
+  "updated_at": "2016-06-02T17:14:20.299Z",
+  "inbound_payment_batch_id": 19,
+  "test": true,
+  "bank_account": {
+    "id": 22,
+    "certificate_id": 26,
+    "environment_id": 2,
+    "iban": "FI4819503000000010",
+    "bic": "NDEAFIHH",
+    "contract_id": null,
+    "created_at": "2016-05-21T21:50:11.800Z",
+    "updated_at": "2016-05-21T21:50:11.800Z",
+    "balance": null,
+    "balance_date": null,
+    "test": true
+  }
+},{
+  "id": 316,
+  "bank_account_id": 22,
+  "environment_id": 2,
+  "amount": 40,
+  "debitor_name": "COPPERHOUSE",
+  "payment_date": "2006-03-06",
+  "archive_id": "0306258877B40058",
+  "booking_date": "2006-03-05T22:00:00.000Z",
+  "reference_number": "890948",
+  "created_at": "2016-06-02T17:14:20.952Z",
+  "updated_at": "2016-06-02T17:14:20.952Z",
+  "inbound_payment_batch_id": 21,
+  "test": true,
+  "bank_account": {
+    "id": 22,
+    "certificate_id": 26,
+    "environment_id": 2,
+    "iban": "FI4819503000000010",
+    "bic": "NDEAFIHH",
+    "contract_id": null,
+    "created_at": "2016-05-21T21:50:11.800Z",
+    "updated_at": "2016-05-21T21:50:11.800Z",
+    "balance": null,
+    "balance_date": null,
+    "test": true
+  }
+}]
+```
+
+Refreshes all inbound payments from bank.
+
+### HTTP request
+
+`POST https://api.bankson.fi/inboundpayments`
+
+### JSON params
+
+Parameter | Description
+--------- | -----------
+certificate_id | The certificate to use
+
+
