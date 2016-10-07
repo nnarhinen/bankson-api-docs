@@ -4,6 +4,7 @@ title: API Reference
 language_tabs:
   - shell
   - javascript
+  - python
 
 toc_footers:
   - <a href='http://www.bankson.fi'>Bankson home page</a>
@@ -20,7 +21,8 @@ search: true
 # Introduction
 
 Welcome to Bankson API! This documentation describes the endpoints Bankson offers. Samples for calling the API are given both with raw curl commands
-as well with the official [Node.js client library](https://github.com/banksonfi/bankson-js).
+as well with the official [Node.js](https://github.com/banksonfi/bankson-js).and [Python](https://github.com/banksonfi/bankson-python) libraries.
+
 
 You can view code examples in the dark area to the right.
 
@@ -33,6 +35,13 @@ var Client = require('bankson-js');
 var client = new Client({
   bearerToken: '4fc79757419b539937b94f1bd0f6e315765bbde4'
 });
+
+// Or with API keys
+
+var client = new Client({
+  apiKey: '<my-api-key-uuid>',
+  privateKey: 'BEGIN RSA PRIVATE KEY....'
+});
 ```
 
 ```shell
@@ -41,11 +50,28 @@ curl https://api.bankson.fi
   -H "Authorization: Bearer 4fc79757419b539937b94f1bd0f6e315765bbde4"
 ```
 
+```python
+from bankson import Bankson, RequestError
 
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+```
 
 > Make sure to replace `4fc79757419b539937b94f1bd0f6e315765bbde4` with the bearer token obtained by Oauth2.
 
-All requests must include the `Authorization` header to identify the requests.
+All requests must include the `Authorization` header to identify the requests. You can either use
+API keys added per user from settings or using OAuth2.
+
+### API Keys
+
+First add API key in [Bankson settings](https://app.bankson.fi/settings/apikeys). Make sure to save
+the private key securely, it won't be stored anywhere by Bankson.
+
+Use the private key to sign the API key for requests. Then add it to `Authorization`
+header: `Authorization: BanksonRSA ApiKey=<apikey>, Timestamp=<unixepoch>, Signature=<sha256 base64 encoded>`
+
+### OAuth2
 
 Authorization is based on OAuth2 specification. The grant types used are `authorization_code` and `refresh_token`.
 
@@ -72,6 +98,14 @@ client.certificates.fetch().then(function(certificates) {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata, test=True)
+```
+
 Bankson has two environments, test and production. Both environments contain their own resources.
 When using test environment certificates all requests to banks are routed to the test environments provided by the banks. This way you can test integrations
 without using your actual bank account and money.
@@ -95,6 +129,15 @@ var client = new Client({
 client.me().then(function(resp) {
   console.log('Current user', resp.user);
 });
+```
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.me()
 ```
 
 > The above command returns JSON structured like this:
@@ -161,6 +204,15 @@ client.certificates.fetch().then(function(certificates) {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.certirifcates.list()
+```
+
 > JSON response
 
 ```json
@@ -212,6 +264,16 @@ client.certificates.upload(
 }).then(function(certificate) {
   // certificate uploaded
 });
+```
+
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.certificates.upload(open('WSNDEA1234.p12', 'rb'), { 'customer_id': '11111111', 'target_id': '11111111A1', 'pin': 'WSNDEA1234', 'bic': 'NDEAFIHH' })
 ```
 
 > JSON response, http status code `201 Created`
@@ -273,6 +335,20 @@ client.certificates.request({
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.certificates.request({
+    'customer_id': '11111111',
+    'target_id': '11111111A1',
+    'transfer_key1', '1234567890',
+    bic: 'NDEAFIHH'
+})
+```
+
 > JSON response, http status code `201 Created`
 
 ```json
@@ -330,6 +406,15 @@ client.certificates.remove(2).then(function() {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.certificates.remove(2)
+```
+
 > Empty response, http status code `204 No content`
 
 Delete certificate from Bankson
@@ -357,6 +442,14 @@ client.certificates.renew(4).then(function(certificate) {
 // If certificate has already expired, provide new transferkeys as second parameter to renew()
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.certificates.renew(4)
+```
 
 > JSON response
 
@@ -417,6 +510,15 @@ client.bankAccounts.fetch().then(function(bankAccounts) {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.bankaccounts.list()
+```
+
 > JSON response
 
 ```json
@@ -461,6 +563,15 @@ client.bankAccounts.create({
   certificate_id: 1,
   contract_id: '1234'
 });
+```
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.bankaccounts.create({ 'bic': 'NDEAFIHH', 'iban': 'FI4819503000000010', 'certificate_id': 1, 'contract_id': '1234' })
 ```
 
 > JSON response
@@ -513,6 +624,15 @@ client.bankAccounts.remove(5).then(function() {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.bankaccounts.remove(5)
+```
+
 > Empty response, HTTP Status code 204
 
 Deletes a bank account.
@@ -538,6 +658,15 @@ var client = new Client({
 client.bankAccountStatements.fetch().then(function(statements) {
   // Do something
 });
+```
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.bankaccountstatements.list()
 ```
 
 > JSON response
@@ -796,6 +925,16 @@ var certificateId = 1;
 client.bankAccountStatements.refresh(certificateId).then(function(statements) {
   console.log('new statements', statements);
 });
+```
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+certificate_id = 1
+client.bankaccountstatements.refresh(certificate_id)
 ```
 
 > JSON response
@@ -1061,6 +1200,19 @@ client.bankAccountStatements.statementXml(12).then(function(xmlBuffer) {
 // client.bankAccountStatements.statementPdf(12)...
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.bankaccountstatments.get(12) # json output
+client.bankaccountstatments.get(12, 'xml') # XML (if applicable)
+client.bankaccountstatments.get(12, 'html') # HTML output
+client.bankaccountstatments.get(12, 'pdf').# PDF output
+client.bankaccountstatments.get(12, 'text') # TEXT (if applicable)
+```
+
 > JSON response
 
 ```json
@@ -1321,6 +1473,15 @@ client.payments.list().then(function(payments) {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.payments.list()
+```
+
 > JSON response
 
 ```json
@@ -1404,6 +1565,25 @@ client.payments.create({
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.payments.create({
+    'amount': 308.3,
+    'recipient_name': 'Työeläkeyhtiö Elo',
+    'recipient_iban': 'FI2721533800005022',
+    'recipient_bic': 'NDEAFIHH',
+    'payment_date': '2014-12-04',
+    'reference_number': '13',
+    'vendor_reference': '23' # Free form string, can be used to identify payments with your own system
+}, { # From which account payment will be made
+    'iban': 'FI4819503000000010',
+    'bic': 'NDEAFIHH'
+})
+```
 
 
 > JSON response (http status code `201 Created`)
@@ -1469,6 +1649,15 @@ var client = new Client({
 client.payments.fetchFeedback().then(function() {
   // Payments updated with current status
 });
+```
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+client.payments.refresh()
 ```
 
 > JSON response

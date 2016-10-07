@@ -21,6 +21,20 @@ client.payments.create({}, {}).then(function() {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+try:
+    client.payments.create({}, {})
+except RequestError as err:
+    print 'Request error'
+    print err.status
+    print err.body # { 'error': u'Validation failed', ... }j
+```
+
 > JSON output
 
 ```json
