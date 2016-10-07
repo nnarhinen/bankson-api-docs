@@ -1693,6 +1693,17 @@ client.inboundPayments.fetch(opts).then(function(payments) {
 });
 ```
 
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+# optional filter parameters
+# opts = { 'reference_number': '13', 'since': '2016-10-10' }
+client.inboundpayments.list(opts)
+```
+
 > JSON response
 
 ```json
@@ -1786,6 +1797,16 @@ var certificateId = 1;
 client.inboundPayments.refresh(certificateId).then(function(payments) {
   console.log('new payments', payments);
 });
+```
+
+```python
+from bankson import Bankson, RequestError
+
+with open('/path/to/private_key_file') as privatefile:
+  keydata = privatefile.read()
+client = Bankson(api_key='<api key uuid>', private_key=keydata)
+certificate_id = 1
+client.inboundpayments.refresh(certificate_id)
 ```
 
 > JSON response
