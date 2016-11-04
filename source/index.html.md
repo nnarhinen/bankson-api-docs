@@ -344,8 +344,8 @@ client = Bankson(api_key='<api key uuid>', private_key=keydata)
 client.certificates.request({
     'customer_id': '11111111',
     'target_id': '11111111A1',
-    'transfer_key1', '1234567890',
-    bic: 'NDEAFIHH'
+    'transfer_key1': '1234567890',
+    'bic': 'NDEAFIHH'
 })
 ```
 
